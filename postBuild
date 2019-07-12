@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# Author: Ilya Kisil <ilyakisil@gmail.com>
+
+# Source project wide setup variables
+source variables.sh
+
+BINDER_BUILD=1
+
+### Parse arguments
+for arg in "$@"; do
+    case ${arg} in
+        --local-build)
+            BINDER_BUILD=0
+            ;;
+        *)
+            # Skip unknown option
+            ;;
+    esac
+    shift
+done
+
+DOWNLOAD_HOME=${PROJECT_HOME}/"data"
+DATA_URL_HOME="http://www.commsp.ee.ic.ac.uk/~csp-mandic/html/projects/inns_2019/data"
+DATA_FILE_NAME="ETH80.zip"
+DATA_URL=${DATA_URL_HOME}/${DATA_FILE_NAME}
+if [[ -x "$(command -v wget)" ]]; then
+    wget --quiet \
+         --show-progress \
+         --directory-prefix=${DOWNLOAD_HOME} \
+         ${DATA_URL} && (cd ${DOWNLOAD_HOME} && unzip -qq ${DATA_FILE_NAME} && rm -rf ${DATA_FILE_NAME})
+
+elif [[ -x "$(command -v curl)" ]]; then
+    (cd ${DOWNLOAD_HOME} && curl -O ${DATA_URL} && unzip -qq ${DATA_FILE_NAME} && rm -rf ${DATA_FILE_NAME})
+else
+    printf "\n\n"
+    printf "==> WARNING: Could not download data!!!\n\n"
+    printf "Please, download and extract it into '${DOWNLOAD_HOME}',\n"
+    printf "Link: ${DATA_URL}\n"
+    printf "\n\n"
+fi
+
+
+# Install kernel for consistency with local installations
+python -m ipykernel install --user --name ${VENV_NAME} --display-name ${VENV_NAME}
+
+
+# Install jupyterlab extensions if executed during binder build
+if [[ ($BINDER_BUILD == 1) ]]; then
+    pip install jupyterlab==0.35.3
+    jupyter labextension install @jupyterlab/toc --no-build
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+    jupyter lab clean
+    jupyter lab build
+fi
