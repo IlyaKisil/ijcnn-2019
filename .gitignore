@@ -4,7 +4,7 @@ Untitled*.ipynb
 binder/ijcnn/ijcnn/data/
 
 src/
-data/
+data/*
 # Don't ignore this file no matter where it is located
 !*.gitkeep
 
