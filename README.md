@@ -4,15 +4,17 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents** generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-Last Update: 2019-07-11
+Last Update: 2019-07-12
 
 - [I want to follow along in a Cloud](#i-want-to-follow-along-in-a-cloud)
 - [I want to follow along on my PC](#i-want-to-follow-along-on-my-pc)
   - [Getting source files](#getting-source-files)
   - [Preparing working environment](#preparing-working-environment)
   - [Start Jupyter Lab](#start-jupyter-lab)
+  - [Removing venv and ipython kernel](#removing-venv-and-ipython-kernel)
 - [Supplementary materials](#supplementary-materials)
 - [Literature references](#literature-references)
 - [Reporting problems and issues](#reporting-problems-and-issues)
@@ -52,6 +54,18 @@ cd ijcnn-2019
 ./boostrap-venv.sh
 ```
 
+If during setup process you get error message
+```
+RemoveError: 'requests' is a dependency of conda and cannot be removed from canada's operating environment.
+```
+then you need to update your `conda` package and and cleanup location where conda installes virtual environments
+```bash
+conda update conda
+rm -rf ${ANACONDA_HOME}/envs/ijcnn-2019
+```
+Typically, `${ANACONDA_HOME}` resides in the root of your home directory
+
+
 If you are on **Windows**, then you can replicate `bootstrap-venv.sh` with the following steps:
 1.  Open Anaconda prompt and execute:
 
@@ -74,6 +88,14 @@ If you are on **Windows**, then you can replicate `bootstrap-venv.sh` with the f
 cd ijcnn-2019
 jupyter lab
 ```
+
+### Removing venv and ipython kernel
+```bash
+conda deactivate
+jupyter kernelspec uninstall ijcnn-2019
+conda env remove -n ijcnn-2019
+```
+
 
 ## Supplementary materials
 -   HOTTBOX [tutorials](https://github.com/hottbox/hottbox-tutorials) and [documentation](https://hottbox.github.io)
