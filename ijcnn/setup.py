@@ -24,9 +24,10 @@ REQUIRED = [
       "pandas==0.24.2",
       "scipy==1.2.1",
       "scikit-learn==0.20.3",
-      "ipywidgets>=7.4.2",
+      "ipywidgets==7.4.2",
       "mne==0.17.2",
-      "hottbox==0.3.1"
+      "hottbox==0.3.1",
+      "jupyterlab==0.35.4"
 ]
 
 

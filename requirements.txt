@@ -1,6 +1,3 @@
 # Trigger installation of ijcnn utils.
 # All requirements should be specified in its 'setup.py'.
 -e ijcnn
-
-jupyterlab==1.0.2
-ipympl

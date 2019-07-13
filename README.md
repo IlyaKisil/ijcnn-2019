@@ -4,10 +4,9 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents** generated with [DocToc](https://github.com/thlorenz/doctoc) 
 
-**Table of Contents** generated with [DocToc](https://github.com/thlorenz/doctoc)
-
-Last Update: 2019-07-12
+Last Update: 2019-07-14
 
 - [I want to follow along in a Cloud](#i-want-to-follow-along-in-a-cloud)
 - [I want to follow along on my PC](#i-want-to-follow-along-on-my-pc)
@@ -46,6 +45,30 @@ git clone https://github.com/IlyaKisil/ijcnn-2019.git
 Alternatively, you can download a ZIP folder with all materials for this assignment by using the `Clone or Download` button (in green color) at the top of this page.
 
 ###  Preparing working environment
+> **Note:** Regardless, of your operating system, make sure that you have [Anaconda](https://www.anaconda.com/download/)
+
+```bash        
+cd ijcnn-2019
+
+# Create venv with conda
+conda create -y --name "ijcnn-2019" python=3.6.5 pip
+conda activate "ijcnn-2019"
+
+# Install dependencies for this tutorial
+pip  install -r requirements.txt    
+
+# Install kernel if you prefer to
+python -m ipykernel install --user --name "ijcnn-2019" --display-name "ijcnn-2019"
+
+# Install jupyterlab extensions (for interactive visualisations)
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension install @jupyterlab/toc --no-build
+jupyter lab clean
+jupyter lab build
+```
+
+Then download [this dataset](http://www.commsp.ee.ic.ac.uk/~csp-mandic/html/projects/inns_2019/data/ETH80.zip) and extract it into the `data` directory.
+
 
 If you are on **Unix**, then simply execute in terminal:
 
@@ -66,26 +89,10 @@ rm -rf ${ANACONDA_HOME}/envs/ijcnn-2019
 Typically, `${ANACONDA_HOME}` resides in the root of your home directory
 
 
-If you are on **Windows**, then you can replicate `bootstrap-venv.sh` with the following steps:
-1.  Open Anaconda prompt and execute:
-
-    ```bash        
-    cd ijcnn-2019
-    conda create -y --name "ijcnn-2019" python=3.6.5
-    conda activate "ijcnn-2019"
-    pip  install -r requirements.txt    
-    python -m ipykernel install --user --name "ijcnn-2019" --display-name "ijcnn-2019"
-    ```
-
-1. Then download [this dataset](http://www.commsp.ee.ic.ac.uk/~csp-mandic/html/projects/inns_2019/data/ETH80.zip) and extract it into the `data` directory.
-
-
- > **Note:** Regardless, of your operating system, make sure that you have [Anaconda](https://www.anaconda.com/download/) and [Jupyter Lab](https://github.com/jupyterlab/jupyterlab#installation) installed.
-
-
 ### Start Jupyter Lab
 ```bash
 cd ijcnn-2019
+conda activate ijcnn-2019
 jupyter lab
 ```
 

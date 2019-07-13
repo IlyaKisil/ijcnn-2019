@@ -3,25 +3,7 @@
 # Author: Ilya Kisil <ilyakisil@gmail.com>
 
 # Source project wide setup variables
-# source ./variables.sh
-
-PROJECT_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-VENV_NAME="ijcnn-2019"
-
-BINDER_BUILD=1
-
-### Parse arguments
-for arg in "$@"; do
-    case ${arg} in
-        --local-build)
-            BINDER_BUILD=0
-            ;;
-        *)
-            # Skip unknown option
-            ;;
-    esac
-    shift
-done
+source ./variables.sh
 
 DOWNLOAD_HOME=${PROJECT_HOME}/"data"
 DATA_URL_HOME="http://www.commsp.ee.ic.ac.uk/~csp-mandic/html/projects/inns_2019/data"
@@ -44,16 +26,12 @@ else
 fi
 
 
-# Install kernel for consistency with local installations
+# Install kernel
 python -m ipykernel install --user --name ${VENV_NAME} --display-name ${VENV_NAME}
 
 
 # Install jupyterlab extensions if executed during binder build
-if [[ ($BINDER_BUILD == 1) ]]; then
-    conda install -y nodejs
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
-    jupyter labextension install @jupyterlab/toc --no-build
-    jupyter labextension install jupyter-matplotlib --no-build
-    jupyter lab clean
-    jupyter lab build
-fi
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension install @jupyterlab/toc --no-build
+jupyter lab clean
+jupyter lab build

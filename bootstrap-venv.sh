@@ -3,9 +3,8 @@
 # Author: Ilya Kisil <ilyakisil@gmail.com>
 
 # Source project wide setup variables
-# source ./variables.sh
-PROJECT_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-VENV_NAME="ijcnn-2019"
+source ./variables.sh
+
 # Check for anaconda first, so not to contaminate users environment
 if [[ -x "$(command -v conda)" ]]; then
     # Create venv with conda
@@ -15,7 +14,7 @@ if [[ -x "$(command -v conda)" ]]; then
     conda activate ${VENV_NAME}
     pip  install -r ${PROJECT_HOME}/requirements.txt
     sh -c "postBuild"
-    # conda deactivate
+    conda deactivate
 else
     printf "\n\n"
     printf "==> WARNING: Could not find anaconda installation!!!\n\n"
