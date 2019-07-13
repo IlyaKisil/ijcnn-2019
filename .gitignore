@@ -7,7 +7,7 @@ src/
 data/*
 # Don't ignore this file no matter where it is located
 !*.gitkeep
-
+!data/EEG_recording_trial_1.csv
 
 
 
