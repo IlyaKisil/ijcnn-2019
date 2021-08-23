@@ -27,7 +27,7 @@ REQUIRED = [
       "ipywidgets==7.4.2",
       "mne==0.17.2",
       "hottbox==0.3.1",
-      "jupyterlab==0.35.4"
+      "jupyterlab==1.2.21"
 ]
 
 
